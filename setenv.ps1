@@ -1,3 +1,3 @@
-$Env:RES = "C:\Program Files\gretl"
-$Env:GRETL_PLUGIN_PATH = "$Env:RES\plugins"
-$Env:GRETL_DATA_PATH = "$Env:RES\data"
+$Env:PATH = "$Env:PATH;C:\Program Files\gretl"
+$Env:GRETL_PLUGIN_PATH = "C:\Program Files\gretl\plugins"
+$Env:GRETL_DATA_PATH = "C:\Program Files\gretl\data"
