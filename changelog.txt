@@ -1,4 +1,4 @@
-version 1.0-49:
-  - libgretl 1.0 version 49
+version 1.0-50:
+  - libgretl 1.0 version 50
   - supports LLVM compilers [clang(-cl)(++).exe]
   - support for MSVC's cl.exe in progress
