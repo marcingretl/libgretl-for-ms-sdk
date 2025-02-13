@@ -20,8 +20,7 @@
 #ifndef GRETL_PATHS_H
 #define GRETL_PATHS_H
 
-#include <sys/stat.h>
-#include <dirent.h>
+#include <sys/stat.h> /* for struct stat */
 
 typedef enum {
     DATA_SEARCH,
@@ -203,7 +202,7 @@ const char *gretl_mpi_hosts (void);
 
 const char *gretl_mpiexec (void);
 
-const char *gretl_function_package_path (void);
+const char *gretl_package_install_path (const char *payload);
 
 void gretl_set_script_dir (const char *s);
 
@@ -241,7 +240,7 @@ int cli_read_rc (void);
 
 #endif
 
-#ifdef OS_OSX
+#ifdef __APPLE__
 
 const char *gretl_app_support_dir (void);
 

@@ -47,6 +47,7 @@ CC -shared lib64_libm_a-libm_dummy.o -o libm.dll (clang used)
 2.a.
 Run "lib.exe /machine:x64 /def:libgretl-1.0-1.def /out:gretl-1.0.lib".
 Note: It should/must be called from within 'x64 Native Tools Command Prompt for VS'. As a result we should get two binary files, i.e. gretl-1.0.exp and gretl-1.0.lib.
+As an alternative command, one may use: "dlltool.exe -d libgretl-1.0-1.def -l gretl-1.0.lib"
 Now libgretl-1.0-1.dll is ready to be used by native MS Windows compilers.
 
 2.b.
