@@ -1,5 +1,5 @@
 version 1.0-51:
-  - libgretl 1.0 version 51: preparation
+  - libgretl 1.0 version 51
 
 version 1.0-50:
   - libgretl 1.0 version 50
