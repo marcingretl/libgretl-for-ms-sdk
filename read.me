@@ -2,10 +2,7 @@ If you want to link your C/C++ code against libgretl you need:
 
 1. unpack mscompile.zip
 2. install Microsoft Visual Studio (2022 used) or MS SDK
-2. install native MS Windows Clang/LLVM compiler
-
-**Note:** Currently, MSVC's `cl.exe` cannot be used due to differences in how MSVC defines
-complex types. We are actively working on resolving this issue.
+3. install native MS Windows Clang/LLVM compiler (cl.exe support is experimental)
 
 Simple examples you'll find in c/c++ directories. Note, that in order to execute produced
 binaries you must set some environmental variables (see setenv.bat or setenv.ps1 for details).
@@ -15,4 +12,4 @@ If you are mixing code linked against MSVCRT and UCRT, ensure that memory alloca
 To address this issue, we provide special functions in libgretl, such as gretl_list_free(), to handle memory management safely.
 
 To do:
-1. find a workaround for cl.exe
+1. MSVC (cl.exe) works, tests needed.

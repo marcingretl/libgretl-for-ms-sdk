@@ -3,8 +3,14 @@
 
 #if (defined __GNUC__) && !(defined __clang__)
 # define COMPILER_IDENT "GCC " __VERSION__
-#else
+#elif (defined __GNUC__) && (defined __clang__)
 # define COMPILER_IDENT __VERSION__
+#elif (defined _MSC_VER) && !(defined __clang__)
+# define COMPILER_IDENT _MSC_VER
+#elif (defined __VERSION__)
+# define COMPILER_IDENT __VERSION__
+#else
+# define COMPILER_IDENT 0
 #endif
 
 int main (void)
@@ -20,7 +26,11 @@ int main (void)
     cli_read_rc();
 #endif
 
+#if defined(_MSC_VER) && !(defined __clang__)
+    printf("compiler used: MSC v.%d\n", COMPILER_IDENT);
+#else
     printf("compiler used: %s\n", COMPILER_IDENT);
+#endif
 	printf("libgretl_version: %d\n\n", libgretl_version());
 
 	b = get_sysinfo_bundle(&err);

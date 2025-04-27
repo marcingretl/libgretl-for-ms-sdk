@@ -25,7 +25,12 @@ extern "C" {
 #endif
 
 #include <stdarg.h>
-#include <complex.h>
+#if defined(_MSC_VER) && !defined(__clang__)
+ #include "..\msvc_complex.h"
+#else
+ #include <complex.h>
+ typedef double _Complex gretl_complex;
+#endif
 
 /* minimum value of diagonal element of R (as in X = QR) that counts
    as non-zero for the purpose of determining the rank of X */
@@ -88,7 +93,7 @@ typedef struct gretl_matrix_ {
     int rows;
     int cols;
     double *val;
-    double _Complex *z; /* was "complex" */
+    gretl_complex *z; /* was "_Complex", changed as of MSVC support */
     int is_complex;
     /*< private >*/
     matrix_info *info;
@@ -106,7 +111,11 @@ typedef struct gretl_matrix_block_ gretl_matrix_block;
  */
 
 #define gretl_matrix_get(m,i,j) (m->val[(j)*m->rows+(i)])
-#define gretl_cmatrix_get(m,i,j) (m->z[(j)*m->rows+(i)])
+#if defined(_MSC_VER) && !defined(__clang__)
+ #define gretl_cmatrix_get(m,i,j) ((m)->z[(j)*(m)->rows+(i)].real)
+#else
+ #define gretl_cmatrix_get(m,i,j) ((m)->z[(j)*(m)->rows+(i)])
+#endif
 
 /**
  * gretl_vector_get:
@@ -129,7 +138,12 @@ typedef struct gretl_matrix_block_ gretl_matrix_block;
  */
 
 #define gretl_matrix_set(m,i,j,x) ((m)->val[(j)*(m)->rows+(i)]=x)
-#define gretl_cmatrix_set(m,i,j,x) ((m)->z[(j)*(m)->rows+(i)]=x)
+#if defined(_MSC_VER) && !defined(__clang__)
+ #define gretl_cmatrix_set(m, i, j, x) \
+        ((m)->z[(j)*(m)->rows+(i)].real = (x), (m)->z[(j)*(m)->rows+(i)].imag = 0.0)
+#else
+ #define gretl_cmatrix_set(m, i, j, x) ((m)->z[(j)*(m)->rows+(i)] = (x))
+#endif
 
 /**
  * gretl_vector_set:
