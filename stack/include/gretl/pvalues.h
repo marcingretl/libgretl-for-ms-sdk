@@ -45,12 +45,16 @@ typedef enum {
     D_NC_T,
     D_LOGISTIC,
     D_DIRICHLET,
-    D_DISCRETE
+    D_DISCRETE,
+    D_IGAMMA,
+    D_NORMAL2
 } DistCode;
 
 double gammafun (double x);
 
 double lngamma (double x);
+
+double lnmgamma (double x, int p);
 
 double digamma (double x);
 

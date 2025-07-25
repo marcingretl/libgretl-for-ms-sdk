@@ -1,6 +1,10 @@
+version 1.0-52:
+  - libgretl 1.0 version 52
+
 version 1.0-51:
   - libgretl 1.0 version 51
-  - initial support for MSVC
+  - initial support for MSVC  
+  note: this version was never released officialy
 
 version 1.0-50:
   - libgretl 1.0 version 50
