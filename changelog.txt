@@ -1,5 +1,5 @@
-version 1.0-52:
-  - libgretl 1.0 version 52
+version 1.0-53:
+  - libgretl 1.0 version 53
   - initial support for arm64 (aarch64)
 
 version 1.0-51:

@@ -271,10 +271,6 @@ void display_model_data_items (const MODEL *pmod);
 
 int bundlize_model_data_items (const MODEL *pmod, gretl_bundle *b);
 
-int gretl_model_set_data_with_destructor (MODEL *pmod, const char *key, void *ptr,
-					  GretlType type, size_t size,
-					  void (*destructor) (void *));
-
 int gretl_model_set_data (MODEL *pmod, const char *key, void *ptr,
 			  GretlType type, size_t size);
 
@@ -321,6 +317,8 @@ void *gretl_model_get_data (const MODEL *pmod, const char *key);
 void *gretl_model_get_data_full (const MODEL *pmod, const char *key,
 				 GretlType *type, int *copied,
 				 size_t *sz);
+
+void *gretl_model_steal_data (MODEL *pmod, const char *key);
 
 int gretl_model_get_int (const MODEL *pmod, const char *key);
 
