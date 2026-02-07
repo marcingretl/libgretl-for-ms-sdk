@@ -50,7 +50,7 @@ enum {
 void libgretl_init (void);
 
 #ifdef HAVE_MPI
-int libgretl_mpi_init (int self, int np, int dcmt);
+int libgretl_mpi_init (int self, int np, int single_rng);
 #else
 /* dummy function */
 int gretl_mpi_initialized (void);
@@ -142,9 +142,9 @@ int varnum_from_string (const char *str, DATASET *dset);
 
 int gretl_int_from_double (double x, int *err);
 
-guint32 gretl_unsigned_from_double (double x, int *err);
+uint32_t gretl_uint32_from_double (double x, int *err);
 
-guint64 gretl_uint53_from_double (double x, int *err);
+uint64_t gretl_uint64_from_double (double x, int *err);
 
 GretlType gretl_type_from_name (const char *s, const DATASET *dset);
 
@@ -260,5 +260,17 @@ int gretl_gunzip (char *zname, char *fname);
 gretl_matrix *dec2bin (double x, const gretl_matrix *v, int *err);
 
 gretl_matrix *bin2dec (const gretl_matrix *m, int *err);
+
+
+#if defined(__APPLE__) && defined(__aarch64__)
+
+#include <complex.h>
+
+/* remedial */
+
+double _Complex __divdc3 (double a, double b,
+			  double c, double d);
+
+#endif /* __APPLE__ && __aarch64__ */
 
 #endif /* GRETL_UTILS_H */
