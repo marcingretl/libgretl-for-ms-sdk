@@ -134,8 +134,10 @@ gretl_matrix *user_matrix_SVD (const gretl_matrix *m,
 
 gretl_matrix *user_matrix_ols (const gretl_matrix *Y,
 			       const gretl_matrix *X,
+			       const gretl_matrix *F,
 			       gretl_matrix *U,
 			       gretl_matrix *V,
+			       gretl_matrix *A,
 			       gretlopt opt,
 			       int *err);
 
@@ -192,6 +194,5 @@ int matrix_XTX_in_place (gretl_matrix *m);
 int gretl_matrix_set_part (gretl_matrix *targ,
 			   const gretl_matrix *src,
 			   double x, SelType sel);
-
 
 #endif /* USERMAT_H_ */

@@ -46,6 +46,7 @@ typedef enum {
     GRETL_MATRIX_LOWER_TRIANGULAR,
     GRETL_MATRIX_UPPER_TRIANGULAR,
     GRETL_MATRIX_SYMMETRIC,
+    GRETL_MATRIX_HERMITIAN,
     GRETL_MATRIX_DIAGONAL,
     GRETL_MATRIX_IDENTITY,
     GRETL_MATRIX_SCALAR,
@@ -599,6 +600,7 @@ int cholesky_factor_of_inverse (gretl_matrix *a);
 gretl_vector *gretl_toeplitz_solve (const gretl_vector *c,
 				    const gretl_vector *r,
 				    const gretl_vector *b,
+				    int pd,
 				    double *det,
 				    int *err);
 
@@ -737,6 +739,14 @@ int gretl_matrix_ols (const gretl_vector *y,
 		      gretl_vector *uhat,
 		      double *s2);
 
+int gretl_matrix_factorized_ols (const gretl_matrix *Y,
+				 const gretl_matrix *X,
+				 const gretl_vector *fac,
+				 gretl_matrix *B,
+				 gretl_matrix *V,
+				 gretl_matrix *U,
+				 gretl_matrix *A);
+
 int gretl_matrix_multi_ols (const gretl_matrix *Y,
 			    const gretl_matrix *X,
 			    gretl_matrix *B,
@@ -829,6 +839,9 @@ int gretl_matrix_get_t1 (const gretl_matrix *m);
 int gretl_matrix_get_t2 (const gretl_matrix *m);
 
 int gretl_matrix_is_dated (const gretl_matrix *m);
+
+int gretl_matrix_copy_dates (gretl_matrix *targ,
+			     const gretl_matrix *src);
 
 int gretl_is_identity_matrix (const gretl_matrix *m);
 

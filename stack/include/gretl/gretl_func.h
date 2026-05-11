@@ -87,6 +87,8 @@ int n_free_functions (void);
 
 ufunc *get_user_function_by_name (const char *name);
 
+ufunc *get_docstring_target (void);
+
 int is_user_function (const char *name);
 
 const ufunc *get_user_function_by_index (int idx);
@@ -139,6 +141,10 @@ int user_func_is_noprint (const ufunc *fun);
 int user_func_is_menu_only (const ufunc *fun);
 
 int user_func_must_assign (const ufunc *fun);
+
+int user_func_add_docstr (ufunc *fun, const char *str);
+
+const char *user_func_get_docstr (const ufunc *fun);
 
 const char *user_function_name_by_index (int i);
 
@@ -213,6 +219,8 @@ char **gretl_function_retrieve_code (ufunc *u, int *nlines);
 
 int print_function_package_sample (const char *fname, int tabwidth,
 				   PRN *prn);
+
+void print_function_signature (ufunc *fun, PRN *prn);
 
 void set_current_function_package (fnpkg *pkg);
 
