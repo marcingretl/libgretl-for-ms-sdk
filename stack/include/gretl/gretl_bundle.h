@@ -41,7 +41,7 @@ typedef struct bundled_item_ bundled_item;
 
 struct bundled_item_ {
     GretlType type;
-    int size;
+    int is_virtual;
     gpointer data;
     char *note;
     char *key;
@@ -62,17 +62,21 @@ void *gretl_bundle_get_content (gretl_bundle *bundle);
 int gretl_bundles_swap_content (gretl_bundle *b1, gretl_bundle *b2);
 
 void *gretl_bundle_get_element (gretl_bundle *bundle, const char *key,
-				GretlType *type, int *size,
-				int *ownit, int *err);
+				GretlType *type, int *is_virtual,
+				int *err);
 
 void *gretl_bundle_get_data (gretl_bundle *bundle, const char *key,
-			     GretlType *type, int *size, int *err);
+			     GretlType *type, int *err);
+
+void *gretl_bundle_get_data_full (gretl_bundle *bundle, const char *key,
+				  GretlType *type, int *is_virtual,
+				  int *err);
 
 void *gretl_bundle_get_target (gretl_bundle *bundle, const char *key,
-			       GretlType *type, int *size, int *err);
+			       GretlType *type, int *err);
 
 void *gretl_bundle_steal_data (gretl_bundle *bundle, const char *key,
-			       GretlType *type, int *size, int *err);
+			       GretlType *type, int *err);
 
 void *gretl_bundle_get_private_data (gretl_bundle *bundle);
 
@@ -87,9 +91,9 @@ gretl_matrix *gretl_bundle_get_matrix (gretl_bundle *bundle,
 				       const char *key,
 				       int *err);
 
-double *gretl_bundle_get_series (gretl_bundle *bundle,
-				 const char *key,
-				 int *n, int *err);
+gretl_matrix *gretl_bundle_get_series (gretl_bundle *bundle,
+				       const char *key,
+				       int *err);
 
 int *gretl_bundle_get_list (gretl_bundle *bundle,
 			    const char *key,
@@ -140,10 +144,10 @@ const char *gretl_bundle_get_note (gretl_bundle *bundle, const char *key);
 const char *gretl_bundle_get_creator (gretl_bundle *bundle);
 
 int gretl_bundle_donate_data (gretl_bundle *bundle, const char *key,
-			      void *ptr, GretlType type, int size);
+			      void *ptr, GretlType type);
 
 int gretl_bundle_set_data (gretl_bundle *bundle, const char *key,
-			   void *ptr, GretlType type, int size);
+			   void *ptr, GretlType type);
 
 int gretl_bundle_set_string (gretl_bundle *bundle, const char *key,
 			     const char *str);
@@ -161,7 +165,10 @@ int gretl_bundle_set_uint64 (gretl_bundle *bundle, const char *key,
                              uint64_t val);
 
 int gretl_bundle_set_series (gretl_bundle *bundle, const char *key,
-			     const double *x, int n);
+			     const double *x, const DATASET *dset);
+
+int gretl_bundle_donate_series (gretl_bundle *bundle, const char *key,
+				double *x, const DATASET *dset);
 
 int gretl_bundle_set_list (gretl_bundle *bundle, const char *key,
 			   const int *list);
@@ -239,6 +246,12 @@ gretl_bundle *gretl_bundle_read_from_buffer (const char *buf,
 gretl_array *gretl_bundle_get_keys (gretl_bundle *b, int *err);
 
 char **gretl_bundle_get_keys_raw (gretl_bundle *b, int *ns);
+
+gretl_matrix *bundle_get_virtual_object (gretl_bundle *b,
+					 GretlType type,
+					 const char *s,
+					 DATASET *dset,
+					 int *err);
 
 gretl_bundle *get_sysinfo_bundle (int *err);
 
