@@ -217,6 +217,8 @@ int gretl_function_print_code (ufunc *u, int tabwidth, PRN *prn);
 
 char **gretl_function_retrieve_code (ufunc *u, int *nlines);
 
+char *gretl_function_get_signature (ufunc *u);
+
 int print_function_package_sample (const char *fname, int tabwidth,
 				   PRN *prn);
 
@@ -284,6 +286,8 @@ fnpkg *get_function_package_by_filename (const char *fname, int *err);
 const char *get_function_package_path_by_name (const char *pkgname);
 
 char **package_peek_dependencies (const char *fname, int *ndeps);
+
+char *package_peek_conflict (const char *fname);
 
 int grab_package_sample (const char *pkgname, char **pscript);
 
