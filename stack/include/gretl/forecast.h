@@ -24,20 +24,12 @@
 extern "C" {
 #endif
 
-typedef enum {
-    FC_AUTO_OK      = 1 << 0,
-    FC_DYNAMIC_OK   = 1 << 1,
-    FC_ADDOBS_OK    = 1 << 2,
-    FC_INTEGRATE_OK = 1 << 3,
-    FC_MEAN_OK      = 1 << 4
-} FcastFlags;
-
 struct FITRESID_ {
     int model_ID;   /* ID of model on which forecast is based */
     int asymp;      /* 0/1 flag for asymptotic estimator */
     int std;        /* 0/1 flag for standardized residuals */
     int model_t1;   /* start of model estimation range */
-    int method;     /* one of the ForecastMethod options */
+    FcastMethod method; /* one of the FcastMethod options */
     double *actual; /* array of values of dependent variable */
     double *fitted; /* array of fitted values */
     double *resid;  /* array of residuals */
