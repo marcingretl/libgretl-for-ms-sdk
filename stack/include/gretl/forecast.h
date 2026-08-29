@@ -36,6 +36,8 @@ struct FITRESID_ {
     double *sderr;  /* array of forecast standard errors (or NULL) */
     double sigma;   /* standard error of regression */
     double alpha;   /* for confidence intervals */
+    double a0;      /* correction factor for log-to-level forecasts */
+    int a0meth;     /* method used for computing a0 (1 = normal, 2 = smear) */
     int pmax;       /* if positive, suggested number of decimal places
                        for use in printing */
     int df;         /* degrees of freedom for model */
@@ -44,7 +46,9 @@ struct FITRESID_ {
     int t2;         /* end of forecast range */
     int k;          /* number of steps ahead (method = FC_KSTEP only) */
     int nobs;       /* length of the arrays actual, fitted, resid */
-    char depvar[VNAMELEN]; /* name of dependent variable */
+    char depvar[VNAMELEN]; /* full name of dependent variable */
+    char ylabel[SHORTLEN]; /* name to display in printout or plot */
+    gretlopt opt;   /* option flags applied to forecast */
 };
 
 void free_fit_resid (FITRESID *fr);
