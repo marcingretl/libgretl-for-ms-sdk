@@ -83,7 +83,7 @@ typedef struct {
     char *ustr;          /* custom 'using' string */
     int *mcols;          /* data-matrix columns used */
     float pscale;        /* scale factor for points */
-    char rgb[10];        /* rgb color specification */
+    char rgb[20];        /* rgb color specification */
     char yaxis;          /* 1 for left, 2 for right */
     int type;            /* 1, 2, ... (style reference) */
     int ptype;           /* point type */
@@ -122,7 +122,7 @@ typedef struct {
 
 struct GPT_SPEC_ {
     FILE *fp;
-    char fname[MAXLEN];        /* for gui purposes */
+    char fname[FILENAME_MAX];  /* for gui purposes */
     PlotType code;             /* to deal with FREQ, FCAST... */
     GptFlags flags;            /* bitwise OR of options */
     int heredata;              /* plot file uses "heredoc" for data */
