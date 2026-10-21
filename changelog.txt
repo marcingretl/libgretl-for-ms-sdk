@@ -1,6 +1,8 @@
+version 1.0-57:
+  - libgretl 1.0 version 57
+
 version 1.0-56:
   - libgretl 1.0 version 56
-  - preparation
 
 version 1.0-55:
   - libgretl 1.0 version 55
