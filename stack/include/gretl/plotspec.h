@@ -195,6 +195,8 @@ int plotspec_max_line_width (GPT_SPEC *spec);
 
 GPT_LINE *plotspec_clone_lines (GPT_SPEC *spec, int *err);
 
+void plotspec_free_lines (GPT_LINE *lines, int n);
+
 int plotspec_add_arrow (GPT_SPEC *spec);
 
 int plotspec_delete_arrow (GPT_SPEC *spec, int i);
@@ -250,5 +252,19 @@ void plotspec_set_bars_limits (GPT_SPEC *spec,
 void plotspec_remove_bars (GPT_SPEC *spec);
 
 int plotspec_line_is_formula (const GPT_SPEC *spec, int i);
+
+/* Information gleaned from a plot file that does not belong in
+   the GPT_SPEC itself: callers should initialize the members
+   (they are overwritten only if the information is found).
+*/
+
+typedef struct PlotReadInfo_ {
+    int pd;           /* data frequency, for time-series plots */
+    int pixel_width;  /* plot width in pixels (geomaps) */
+    int pixel_height; /* plot height in pixels (geomaps) */
+} PlotReadInfo;
+
+int plotspec_read_file (GPT_SPEC *spec, const DATASET *dset,
+			PlotReadInfo *info);
 
 #endif /* PLOTSPEC_H */
