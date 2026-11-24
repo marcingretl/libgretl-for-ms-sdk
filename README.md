@@ -2,7 +2,7 @@
 
 Precompiled **libgretl** import libraries and headers for developing C and C++ applications on **Microsoft Windows (x64 and ARM64)** using native Windows toolchains.
 
-This GitHub repository is a mirror of the [official SourceForge SVN repository](https://sourceforge.net/p/libgretl-for-ms-sdk/code/). Development and releases are maintained on SourceForge.
+The GitHub repository is a mirror of the [official SourceForge SVN repository](https://sourceforge.net/p/libgretl-for-ms-sdk/code/). Development and releases are maintained on SourceForge.
 
 ## Requirements
 
