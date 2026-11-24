@@ -1,5 +1,8 @@
 version 1.0-57:
   - libgretl 1.0 version 57
+  - libgretl is now built without the --enable-pkgbuild option
+  - starting with this release, the libgretl DLL uses a versioned filename (e.g., libgretl-1.0-57.dll)
+  - applications must be rebuilt against the updated SDK
 
 version 1.0-56:
   - libgretl 1.0 version 56
